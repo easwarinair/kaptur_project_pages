@@ -24,15 +24,13 @@ class AppRoutes {
 
   static const String appNavigationScreen = '/app_navigation_screen';
 
-  static const String initialRoute = '/initialRoute';
-
-  static Map<String, WidgetBuilder> get routes => {
-        projectCreationFormScreen: ProjectCreationFormScreen.builder,
-        projectCreationFormThreeScreen: ProjectCreationFormThreeScreen.builder,
-        projectCreationFormFourScreen: ProjectCreationFormFourScreen.builder,
-        projectCreationFormFiveScreen: ProjectCreationFormFiveScreen.builder,
-        projectCreationFormSixScreen: ProjectCreationFormSixScreen.builder,
-        appNavigationScreen: AppNavigationScreen.builder,
-        initialRoute: ProjectCreationFormScreen.builder
-      };
+  static Map<String, WidgetBuilder> routes = {
+    projectCreationFormScreen: (context) => ProjectCreationFormScreen(),
+    projectCreationFormThreeScreen: (context) =>
+        ProjectCreationFormThreeScreen(),
+    projectCreationFormFourScreen: (context) => ProjectCreationFormFourScreen(),
+    projectCreationFormFiveScreen: (context) => ProjectCreationFormFiveScreen(),
+    projectCreationFormSixScreen: (context) => ProjectCreationFormSixScreen(),
+    appNavigationScreen: (context) => AppNavigationScreen()
+  };
 }

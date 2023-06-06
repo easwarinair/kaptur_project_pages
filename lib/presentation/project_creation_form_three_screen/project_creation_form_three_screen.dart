@@ -1,21 +1,14 @@
-import 'bloc/project_creation_form_three_bloc.dart';
-import 'models/project_creation_form_three_model.dart';
 import 'package:flutter/material.dart';
 import 'package:kaptur/core/app_export.dart';
 import 'package:kaptur/widgets/custom_button.dart';
 import 'package:kaptur/widgets/custom_drop_down.dart';
 
 class ProjectCreationFormThreeScreen extends StatelessWidget {
-  static Widget builder(BuildContext context) {
-    return BlocProvider<ProjectCreationFormThreeBloc>(
-      create: (context) =>
-          ProjectCreationFormThreeBloc(ProjectCreationFormThreeState(
-        projectCreationFormThreeModelObj: ProjectCreationFormThreeModel(),
-      ))
-            ..add(ProjectCreationFormThreeInitialEvent()),
-      child: ProjectCreationFormThreeScreen(),
-    );
-  }
+  List<String> dropdownItemList = [
+    "Item One",
+    "Item Two",
+    "Item Three",
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +31,7 @@ class ProjectCreationFormThreeScreen extends StatelessWidget {
                   right: 45,
                 ),
                 child: Text(
-                  "msg_create_new_project".tr,
+                  "Create new Project.",
                   maxLines: null,
                   textAlign: TextAlign.left,
                   style: AppStyle.txtGloockRegular56,
@@ -50,7 +43,7 @@ class ProjectCreationFormThreeScreen extends StatelessWidget {
                   top: 30,
                 ),
                 child: Text(
-                  "msg_notification_time".tr,
+                  "Notification Time",
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.left,
                   style: AppStyle.txtInterBold16,
@@ -71,7 +64,7 @@ class ProjectCreationFormThreeScreen extends StatelessWidget {
                       width: getHorizontalSize(
                         130,
                       ),
-                      text: "lbl_11_30_pm".tr,
+                      text: "11:30 PM",
                       margin: getMargin(
                         top: 2,
                         bottom: 8,
@@ -115,7 +108,7 @@ class ProjectCreationFormThreeScreen extends StatelessWidget {
                           Align(
                             alignment: Alignment.center,
                             child: Text(
-                              "lbl".tr,
+                              "+",
                               overflow: TextOverflow.ellipsis,
                               textAlign: TextAlign.left,
                               style: AppStyle.txtInterBold42,
@@ -133,7 +126,7 @@ class ProjectCreationFormThreeScreen extends StatelessWidget {
                   top: 5,
                 ),
                 child: Text(
-                  "msg_notification_sound".tr,
+                  "Notification Sound",
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.left,
                   style: AppStyle.txtInterBold16,
@@ -152,7 +145,7 @@ class ProjectCreationFormThreeScreen extends StatelessWidget {
                         height: getVerticalSize(
                           40,
                         ),
-                        text: "msg_default_fresh_start".tr,
+                        text: "Default (Fresh Start)",
                       ),
                     ),
                     Container(
@@ -251,7 +244,7 @@ class ProjectCreationFormThreeScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "msg_advanced_options".tr,
+                        "Advanced Options",
                         overflow: TextOverflow.ellipsis,
                         textAlign: TextAlign.left,
                         style: AppStyle.txtInterBold16,
@@ -287,7 +280,7 @@ class ProjectCreationFormThreeScreen extends StatelessWidget {
                         bottom: 9,
                       ),
                       child: Text(
-                        "lbl_repeat_every".tr,
+                        "Repeat every",
                         overflow: TextOverflow.ellipsis,
                         textAlign: TextAlign.left,
                         style: AppStyle.txtInterBold16,
@@ -300,47 +293,32 @@ class ProjectCreationFormThreeScreen extends StatelessWidget {
                       width: getHorizontalSize(
                         80,
                       ),
-                      text: "lbl_00_00".tr,
+                      text: "00:00",
                       margin: getMargin(
                         left: 8,
                       ),
                     ),
-                    BlocSelector<
-                        ProjectCreationFormThreeBloc,
-                        ProjectCreationFormThreeState,
-                        ProjectCreationFormThreeModel?>(
-                      selector: (state) =>
-                          state.projectCreationFormThreeModelObj,
-                      builder: (context, projectCreationFormThreeModelObj) {
-                        return CustomDropDown(
-                          width: getHorizontalSize(
-                            99,
-                          ),
-                          focusNode: FocusNode(),
-                          autofocus: true,
-                          icon: Container(
-                            margin: getMargin(
-                              left: 6,
-                              right: 3,
-                            ),
-                            child: CustomImageView(
-                              svgPath: ImageConstant.imgArrowdown,
-                            ),
-                          ),
-                          hintText: "lbl_hh_mm".tr,
-                          margin: getMargin(
-                            left: 10,
-                          ),
-                          items: projectCreationFormThreeModelObj
-                                  ?.dropdownItemList ??
-                              [],
-                          onChanged: (value) {
-                            context
-                                .read<ProjectCreationFormThreeBloc>()
-                                .add(ChangeDropDownEvent(value: value));
-                          },
-                        );
-                      },
+                    CustomDropDown(
+                      width: getHorizontalSize(
+                        99,
+                      ),
+                      focusNode: FocusNode(),
+                      autofocus: true,
+                      icon: Container(
+                        margin: getMargin(
+                          left: 6,
+                          right: 3,
+                        ),
+                        child: CustomImageView(
+                          svgPath: ImageConstant.imgArrowdown,
+                        ),
+                      ),
+                      hintText: "HH:MM",
+                      margin: getMargin(
+                        left: 10,
+                      ),
+                      items: dropdownItemList,
+                      onChanged: (value) {},
                     ),
                   ],
                 ),
@@ -389,7 +367,7 @@ class ProjectCreationFormThreeScreen extends StatelessWidget {
                               right: 4,
                             ),
                             child: Text(
-                              "lbl_20px".tr,
+                              "20px",
                               overflow: TextOverflow.ellipsis,
                               textAlign: TextAlign.left,
                               style: AppStyle.txtInterBold4,
@@ -446,7 +424,7 @@ class ProjectCreationFormThreeScreen extends StatelessWidget {
                               left: 17,
                             ),
                             child: Text(
-                              "lbl_back".tr,
+                              "Back",
                               overflow: TextOverflow.ellipsis,
                               textAlign: TextAlign.left,
                               style: AppStyle.txtInterBold17,
@@ -463,7 +441,7 @@ class ProjectCreationFormThreeScreen extends StatelessWidget {
                       width: getHorizontalSize(
                         110,
                       ),
-                      text: "lbl_finish".tr,
+                      text: "Finish",
                       variant: ButtonVariant.FillDeeporange100,
                       padding: ButtonPadding.PaddingT9,
                       suffixWidget: Container(

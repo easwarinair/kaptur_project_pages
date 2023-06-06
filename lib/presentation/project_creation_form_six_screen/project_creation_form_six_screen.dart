@@ -1,21 +1,14 @@
-import 'bloc/project_creation_form_six_bloc.dart';
-import 'models/project_creation_form_six_model.dart';
 import 'package:flutter/material.dart';
 import 'package:kaptur/core/app_export.dart';
 import 'package:kaptur/widgets/custom_button.dart';
 import 'package:kaptur/widgets/custom_drop_down.dart';
 
 class ProjectCreationFormSixScreen extends StatelessWidget {
-  static Widget builder(BuildContext context) {
-    return BlocProvider<ProjectCreationFormSixBloc>(
-      create: (context) =>
-          ProjectCreationFormSixBloc(ProjectCreationFormSixState(
-        projectCreationFormSixModelObj: ProjectCreationFormSixModel(),
-      ))
-            ..add(ProjectCreationFormSixInitialEvent()),
-      child: ProjectCreationFormSixScreen(),
-    );
-  }
+  List<String> dropdownItemList = [
+    "Item One",
+    "Item Two",
+    "Item Three",
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +31,7 @@ class ProjectCreationFormSixScreen extends StatelessWidget {
                   right: 45,
                 ),
                 child: Text(
-                  "msg_create_new_project".tr,
+                  "Create new Project.",
                   maxLines: null,
                   textAlign: TextAlign.left,
                   style: AppStyle.txtGloockRegular56,
@@ -50,7 +43,7 @@ class ProjectCreationFormSixScreen extends StatelessWidget {
                   top: 30,
                 ),
                 child: Text(
-                  "msg_notification_time".tr,
+                  "Notification Time",
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.left,
                   style: AppStyle.txtInterBold16,
@@ -71,7 +64,7 @@ class ProjectCreationFormSixScreen extends StatelessWidget {
                       width: getHorizontalSize(
                         130,
                       ),
-                      text: "lbl_11_30_pm".tr,
+                      text: "11:30 PM",
                       margin: getMargin(
                         top: 2,
                         bottom: 8,
@@ -115,7 +108,7 @@ class ProjectCreationFormSixScreen extends StatelessWidget {
                           Align(
                             alignment: Alignment.center,
                             child: Text(
-                              "lbl".tr,
+                              "+",
                               overflow: TextOverflow.ellipsis,
                               textAlign: TextAlign.left,
                               style: AppStyle.txtInterBold42,
@@ -133,7 +126,7 @@ class ProjectCreationFormSixScreen extends StatelessWidget {
                   top: 5,
                 ),
                 child: Text(
-                  "msg_notification_sound".tr,
+                  "Notification Sound",
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.left,
                   style: AppStyle.txtInterBold16,
@@ -152,7 +145,7 @@ class ProjectCreationFormSixScreen extends StatelessWidget {
                         height: getVerticalSize(
                           40,
                         ),
-                        text: "msg_default_fresh_start".tr,
+                        text: "Default (Fresh Start)",
                       ),
                     ),
                     Container(
@@ -251,7 +244,7 @@ class ProjectCreationFormSixScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "msg_advanced_options".tr,
+                        "Advanced Options",
                         overflow: TextOverflow.ellipsis,
                         textAlign: TextAlign.left,
                         style: AppStyle.txtInterBold16,
@@ -288,44 +281,30 @@ class ProjectCreationFormSixScreen extends StatelessWidget {
                         bottom: 9,
                       ),
                       child: Text(
-                        "lbl_repeat_every".tr,
+                        "Repeat every",
                         overflow: TextOverflow.ellipsis,
                         textAlign: TextAlign.left,
                         style: AppStyle.txtInterBold16,
                       ),
                     ),
-                    BlocSelector<
-                        ProjectCreationFormSixBloc,
-                        ProjectCreationFormSixState,
-                        ProjectCreationFormSixModel?>(
-                      selector: (state) => state.projectCreationFormSixModelObj,
-                      builder: (context, projectCreationFormSixModelObj) {
-                        return CustomDropDown(
-                          width: getHorizontalSize(
-                            99,
-                          ),
-                          focusNode: FocusNode(),
-                          autofocus: true,
-                          icon: Container(
-                            margin: getMargin(
-                              left: 5,
-                              right: 3,
-                            ),
-                            child: CustomImageView(
-                              svgPath: ImageConstant.imgArrowdown,
-                            ),
-                          ),
-                          hintText: "lbl_weekly".tr,
-                          items: projectCreationFormSixModelObj
-                                  ?.dropdownItemList ??
-                              [],
-                          onChanged: (value) {
-                            context
-                                .read<ProjectCreationFormSixBloc>()
-                                .add(ChangeDropDownEvent(value: value));
-                          },
-                        );
-                      },
+                    CustomDropDown(
+                      width: getHorizontalSize(
+                        99,
+                      ),
+                      focusNode: FocusNode(),
+                      autofocus: true,
+                      icon: Container(
+                        margin: getMargin(
+                          left: 5,
+                          right: 3,
+                        ),
+                        child: CustomImageView(
+                          svgPath: ImageConstant.imgArrowdown,
+                        ),
+                      ),
+                      hintText: "Weekly",
+                      items: dropdownItemList,
+                      onChanged: (value) {},
                     ),
                   ],
                 ),
@@ -356,7 +335,7 @@ class ProjectCreationFormSixScreen extends StatelessWidget {
                           borderRadius: BorderRadiusStyle.txtRoundedBorder10,
                         ),
                         child: Text(
-                          "lbl_s".tr,
+                          "S",
                           overflow: TextOverflow.ellipsis,
                           textAlign: TextAlign.left,
                           style: AppStyle.txtInterBold17,
@@ -380,7 +359,7 @@ class ProjectCreationFormSixScreen extends StatelessWidget {
                           borderRadius: BorderRadiusStyle.txtRoundedBorder10,
                         ),
                         child: Text(
-                          "lbl_m".tr,
+                          "M",
                           overflow: TextOverflow.ellipsis,
                           textAlign: TextAlign.left,
                           style: AppStyle.txtInterBold17,
@@ -404,7 +383,7 @@ class ProjectCreationFormSixScreen extends StatelessWidget {
                           borderRadius: BorderRadiusStyle.txtRoundedBorder10,
                         ),
                         child: Text(
-                          "lbl_t".tr,
+                          "T",
                           overflow: TextOverflow.ellipsis,
                           textAlign: TextAlign.left,
                           style: AppStyle.txtInterBold17,
@@ -428,7 +407,7 @@ class ProjectCreationFormSixScreen extends StatelessWidget {
                           borderRadius: BorderRadiusStyle.txtRoundedBorder10,
                         ),
                         child: Text(
-                          "lbl_w".tr,
+                          "W",
                           overflow: TextOverflow.ellipsis,
                           textAlign: TextAlign.left,
                           style: AppStyle.txtInterBold17,
@@ -452,7 +431,7 @@ class ProjectCreationFormSixScreen extends StatelessWidget {
                           borderRadius: BorderRadiusStyle.txtRoundedBorder10,
                         ),
                         child: Text(
-                          "lbl_t".tr,
+                          "T",
                           overflow: TextOverflow.ellipsis,
                           textAlign: TextAlign.left,
                           style: AppStyle.txtInterBold17,
@@ -476,7 +455,7 @@ class ProjectCreationFormSixScreen extends StatelessWidget {
                           borderRadius: BorderRadiusStyle.txtRoundedBorder10,
                         ),
                         child: Text(
-                          "lbl_f".tr,
+                          "F",
                           overflow: TextOverflow.ellipsis,
                           textAlign: TextAlign.left,
                           style: AppStyle.txtInterBold17,
@@ -500,7 +479,7 @@ class ProjectCreationFormSixScreen extends StatelessWidget {
                           borderRadius: BorderRadiusStyle.txtRoundedBorder10,
                         ),
                         child: Text(
-                          "lbl_s".tr,
+                          "S",
                           overflow: TextOverflow.ellipsis,
                           textAlign: TextAlign.left,
                           style: AppStyle.txtInterBold17,
@@ -554,7 +533,7 @@ class ProjectCreationFormSixScreen extends StatelessWidget {
                               right: 4,
                             ),
                             child: Text(
-                              "lbl_20px".tr,
+                              "20px",
                               overflow: TextOverflow.ellipsis,
                               textAlign: TextAlign.left,
                               style: AppStyle.txtInterBold4,
@@ -611,7 +590,7 @@ class ProjectCreationFormSixScreen extends StatelessWidget {
                               left: 17,
                             ),
                             child: Text(
-                              "lbl_back".tr,
+                              "Back",
                               overflow: TextOverflow.ellipsis,
                               textAlign: TextAlign.left,
                               style: AppStyle.txtInterBold17,
@@ -628,7 +607,7 @@ class ProjectCreationFormSixScreen extends StatelessWidget {
                       width: getHorizontalSize(
                         110,
                       ),
-                      text: "lbl_finish".tr,
+                      text: "Finish",
                       variant: ButtonVariant.FillDeeporange100,
                       padding: ButtonPadding.PaddingT9,
                       suffixWidget: Container(
